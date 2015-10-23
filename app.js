@@ -49,7 +49,39 @@ var Board = (function() {
 })();
 
 var GameController = (function() {
+  var gameOver = false;
+  var level = 1;
 
+  return {
+    // create new board game
+    createGame: function() {
+      GameController.restartGame();
+      Board.createPattern();
+    },
+
+    // restart game
+    restartGame: function() {
+      Board.resetBoardPattern();
+    },
+
+    // player enters move
+    playerMoves: function(playerInput) {
+      Board.addPlayerInput(playerInput);
+    },
+
+    // next level
+    nextLevel: function() {
+      level++;
+    },
+
+    // check for game over
+    checkForGameOver: function() {
+      if(!Board.checkForMatch()) {
+        gameOver = true;
+      }
+    }
+
+  }
 })();
 
 (function() {
