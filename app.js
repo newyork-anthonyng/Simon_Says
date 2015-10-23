@@ -5,7 +5,7 @@ var Board = (function() {
   return {
     // create random pattern of 100 colors
     createPattern: function() {
-      for(var i = 0; i < 50; i++) {
+      for(var i = 0; i < 10; i++) {
         // create a random number between 0 and 3, inclusive
         var randomNumber = Math.floor(Math.random() * 4);
         boardPattern.push(randomNumber);
@@ -21,6 +21,11 @@ var Board = (function() {
     // add player inputs
     addPlayerInput: function(playerInput) {
       playerPattern.push(playerInput)
+    },
+
+    // player inputs
+    playerLevel: function() {
+      return playerPattern.length;
     },
 
     // reset player pattern
@@ -42,8 +47,8 @@ var Board = (function() {
 
     // TO-DO DELETE DEBUG
     test: function() {
-      console.log(boardPattern);
-      console.log(playerPattern);
+      console.log("Board: " + boardPattern);
+      console.log("Player: " + playerPattern);
     }
   }
 })();
@@ -66,18 +71,31 @@ var GameController = (function() {
 
     // player enters move
     playerMoves: function(playerInput) {
+      // add player input
       Board.addPlayerInput(playerInput);
+
+      // check their moves
+      GameController.checkForGameOver();
+
+      // advance to next level otherwise
+      if(!gameOver && Board.playerLevel() === level) {
+        GameController.nextLevel();
+      }
     },
 
-    // next level
+    // advance to the next level of the game
     nextLevel: function() {
       level++;
+      Board.test();
+      console.log("Next level: " + level)
+      Board.resetPlayerPattern();
     },
 
     // check for game over
     checkForGameOver: function() {
       if(!Board.checkForMatch()) {
         gameOver = true;
+        console.log("Game is over");
       }
     }
 
@@ -85,4 +103,28 @@ var GameController = (function() {
 })();
 
 (function() {
+  GameController.createGame();
+  Board.test();
+
+  var button0 = document.getElementById("0");
+  var button1 = document.getElementById("1");
+  var button2 = document.getElementById("2");
+  var button3 = document.getElementById("3");
+
+  button0.addEventListener("click", function() {
+    GameController.playerMoves(Number(this.id));
+  });
+
+  button1.addEventListener("click", function() {
+    GameController.playerMoves(Number(this.id));
+  });
+
+  button2.addEventListener("click", function() {
+    GameController.playerMoves(Number(this.id));
+  });
+
+  button3.addEventListener("click", function() {
+    GameController.playerMoves(Number(this.id));
+  });
+
 })();
