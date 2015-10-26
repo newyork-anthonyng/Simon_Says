@@ -1,0 +1,18 @@
+button {
+  background-color:lavender;
+  border:1px solid black;
+  border-radius:10px;
+  opacity:0.5;
+
+  height:100px;
+  width:100px;
+}
+
+button:hover {
+  background-color:purple;
+  opacity:1.0;
+}
+
+.highlighted {
+  background-color:yellow;
+}

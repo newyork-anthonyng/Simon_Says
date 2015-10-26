@@ -45,6 +45,8 @@ var Board = (function() {
       return true
     },
 
+    
+
     // TO-DO DELETE DEBUG
     test: function() {
       console.log("Board: " + boardPattern);
