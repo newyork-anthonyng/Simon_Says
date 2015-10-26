@@ -9,6 +9,7 @@ var PatternPlayerController = (function() {
       return function() {
         // remove prior highlights
         var oldButton = document.getElementsByClassName("highlighted");
+        console.log(oldButton);
         for(var i = 0; i < oldButton.length; i++) {
           oldButton[i].classList.remove("highlighted");
         }
@@ -25,7 +26,7 @@ var PatternPlayerController = (function() {
       var functionArray = [];
 
       for(var i = 0; i < patternArray.length; i++) {
-        functionArray.push(PatternPlayerController.playButton(i));
+        functionArray.push(PatternPlayerController.playButton(patternArray[i]));
       }
 
       for(var i = 0; i < patternArray.length; i++) {
