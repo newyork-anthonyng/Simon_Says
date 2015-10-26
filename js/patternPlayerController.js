@@ -1,29 +1,35 @@
 var PatternPlayerController = (function() {
 
   // interval is how long the button will be lit up
-  var interval = 1000;
+  var interval = 800;
 
   return {
+
+    playButton: function(button_index) {
+      return function() {
+        // remove prior highlights
+        var oldButton = document.getElementsByClassName("highlighted");
+        for(var i = 0; i < oldButton.length; i++) {
+          oldButton[i].classList.remove("highlighted");
+        }
+
+        // add highlights to current button
+        var currentButton = document.getElementById(button_index);
+        currentButton.classList.add("highlighted");
+
+      }
+    },
+
     // play the patterns that are passed into it
     play: function(patternArray) {
-      // light up the first button, add a timeout interval that increases
-      console.log(patternArray);
+      var functionArray = [];
 
       for(var i = 0; i < patternArray.length; i++) {
-        console.log("Playing pattern: " + i);
-        window.setTimeout(function() {
-          var highlighted = document.getElementsByClassName("highlighted");
-          if(!highlighted) {
-            // remove any previous "highlighted" classes
-            highlighted.classList.remove("highlighted");
-          }
-            // find the button that we have to light up
-            var currentButton = document.getElementById(patternArray[i].toString());
+        functionArray.push(PatternPlayerController.playButton(i));
+      }
 
-            // add a "highlighted" class to it
-            currentButton.classList.add("highlighted");
-
-        }, 1000 * i);
+      for(var i = 0; i < patternArray.length; i++) {
+        window.setTimeout(functionArray[i], i * interval);
       }
     },
   }

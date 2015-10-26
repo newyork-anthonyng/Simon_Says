@@ -9,7 +9,7 @@
   var playButton = document.getElementById("PlayGame");
 
   playButton.addEventListener("click", function() {
-    PatternPlayerController.play(["0"]);
+    PatternPlayerController.play(["0","1","2"]);
   });
 
   button0.addEventListener("click", function() {
