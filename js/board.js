@@ -10,7 +10,6 @@ var Board = (function() {
         var randomNumber = Math.floor(Math.random() * 4);
         boardPattern.push(randomNumber);
       }
-
     },
 
     // reset pattern
@@ -43,6 +42,11 @@ var Board = (function() {
         }
       }
       return true
+    },
+
+    // return board pattern
+    getBoardPattern: function() {
+      return boardPattern;
     },
 
     // TO-DO DELETE DEBUG

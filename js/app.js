@@ -1,6 +1,5 @@
 (function() {
   GameController.createGame();
-  Board.test();
 
   var button0 = document.getElementById("0");
   var button1 = document.getElementById("1");
@@ -9,8 +8,8 @@
   var playButton = document.getElementById("PlayGame");
 
   playButton.addEventListener("click", function() {
-    // PatternPlayerController.play(["0","0","0"]);
-    PatternPlayerController.play(["0","1","2","3","2","1","0"]);
+    console.log("Board pattern: " + Board.getBoardPattern());
+    PatternPlayerController.play(Board.getBoardPattern());
   });
 
   button0.addEventListener("click", function() {
@@ -21,14 +20,17 @@
 
   button1.addEventListener("click", function() {
     GameController.playerMoves(Number(this.id));
+    ViewController.highlightButton(this);
   });
 
   button2.addEventListener("click", function() {
     GameController.playerMoves(Number(this.id));
+    ViewController.highlightButton(this);
   });
 
   button3.addEventListener("click", function() {
     GameController.playerMoves(Number(this.id));
+    ViewController.highlightButton(this);
   });
 
 })();

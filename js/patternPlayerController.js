@@ -1,6 +1,5 @@
 var PatternPlayerController = (function() {
 
-  // interval is how long the button will be lit up
   var interval = 800;
 
   return {
@@ -17,7 +16,6 @@ var PatternPlayerController = (function() {
         // add highlights to current button
         var currentButton = document.getElementById(button_index);
         currentButton.classList.add("highlighted");
-
       }
     },
 
