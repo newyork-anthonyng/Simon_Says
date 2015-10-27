@@ -16,3 +16,33 @@ button:hover {
 .highlighted {
   background-color:yellow;
 }
+
+/* Accordion Instructions */
+
+.accordion {
+  border:1px solid black;
+  border-radius:5px;
+  height:100px;
+  overflow:hidden;
+  margin:10px auto;
+  padding:5px;
+  width:500px;
+
+  transition:height 0.3s ease-out;
+  transition-delay:0.1s;
+
+  position:relative;
+}
+
+.accordion:hover {
+  height:250px;
+}
+
+.fadeout {
+  bottom:0px;
+  width: 500px;
+  height:60px;
+
+  position:absolute;
+  background: -webkit-linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+}
