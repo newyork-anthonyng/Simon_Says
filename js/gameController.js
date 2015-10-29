@@ -42,6 +42,12 @@ var GameController = (function() {
         gameOver = true;
         console.log("Game is over");
       }
+    },
+
+    // return current board pattern
+    getBoardPattern: function() {
+      var myBoard = Board.getBoardPattern();
+      return myBoard.splice(0, level);
     }
 
   }

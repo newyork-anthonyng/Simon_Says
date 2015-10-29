@@ -9,28 +9,31 @@
 
   playButton.addEventListener("click", function() {
     console.log("Board pattern: " + Board.getBoardPattern());
-    PatternPlayerController.play(Board.getBoardPattern());
+    PatternPlayerController.play(GameController.getBoardPattern());
   });
 
   button0.addEventListener("click", function() {
     GameController.playerMoves(Number(this.id));
-    console.log("Button clicked: " + this.classList);
     ViewController.highlightButton(this);
+    Board.test();
   });
 
   button1.addEventListener("click", function() {
     GameController.playerMoves(Number(this.id));
     ViewController.highlightButton(this);
+    Board.test();
   });
 
   button2.addEventListener("click", function() {
     GameController.playerMoves(Number(this.id));
     ViewController.highlightButton(this);
+    Board.test();
   });
 
   button3.addEventListener("click", function() {
     GameController.playerMoves(Number(this.id));
     ViewController.highlightButton(this);
+    Board.test();
   });
 
 })();
