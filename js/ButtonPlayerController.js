@@ -1,51 +1,43 @@
 var ButtonPlayerController = (function() {
 
-  var interval = 1000;
+  var interval = 800;
+  var intervalDelay = 500;
 
   return {
 
     playButton: function(button) {
-      console.log(button.id + ' was pressed.');
+      return function() {
+        console.log(button.id + ' was pressed.');
 
-      // remove all highlights from buttons
-      var allButtons = document.querySelector('button');
-      
-      for(var i = 0; i < allButtons.length; i++) {
-        allButtons[i].classList.remove('highlighted');
+        // remove all highlights from buttons
+        var allButtons = document.getElementsByClassName('highlighted');
+
+        for(var i = 0; i < allButtons.length; i++) {
+          allButtons[i].classList.remove('highlighted');
+        }
+
+        button.classList.add('highlighted');
+
+        // add timeout
+        window.setTimeout(function() {
+          button.classList.remove('highlighted');
+        }, interval);
       }
-
-      // add highlight to selected button
-      button.classList.add('highlighted');
-
-      // add timeout
-
     },
-
-    // playButton: function(button_index) {
-    //   return function() {
-    //     // remove prior highlights
-    //     var oldButton = document.getElementsByClassName("highlighted");
-    //     console.log(oldButton);
-    //     for(var i = 0; i < oldButton.length; i++) {
-    //       oldButton[i].classList.remove("highlighted");
-    //     }
-    //
-    //     // add highlights to current button
-    //     var currentButton = document.getElementById(button_index);
-    //     currentButton.classList.add("highlighted");
-    //   }
-    // },
 
     // play the patterns that are passed into it
     play: function(patternArray) {
-      var functionArray = [];
 
+      // because of closure issues, make an array of functions
+      var functionArray = [];
       for(var i = 0; i < patternArray.length; i++) {
-        functionArray.push(PatternPlayerController.playButton(patternArray[i]));
+        // get current button
+        var currentButton = document.getElementById(patternArray[i]);
+        functionArray.push(ButtonPlayerController.playButton(currentButton));
       }
 
       for(var i = 0; i < patternArray.length; i++) {
-        window.setTimeout(functionArray[i], i * interval);
+        window.setTimeout(functionArray[i],(i * interval) + (i * intervalDelay));
       }
     },
   }
