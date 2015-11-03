@@ -3,7 +3,6 @@ var GameController = (function() {
   var gameOver = false;
 
   return {
-    // create game
     createGame: function() {
       // create board
       Board.resetBoard();
