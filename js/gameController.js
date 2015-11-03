@@ -34,9 +34,23 @@ var GameController = (function() {
       return Board.playerFinished(level);
     },
 
+    checkPlayerMoves: function() {
+      return Board.checkPlayerMoves();
+    },
+
+    setGameOver: function() {
+      gameOver = true;
+    },
+
+    getGameOver: function() {
+      return gameOver;
+    }
+
     testGameController: function() {
+      Board.testBoardPattern();
       console.log('level: ' + level);
       console.log('gameOver: ' + gameOver);
+      console.log('player matches?: ' + this.checkPlayerMoves());
     }
   }
 
