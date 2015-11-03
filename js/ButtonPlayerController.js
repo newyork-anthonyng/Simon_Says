@@ -9,7 +9,7 @@ var ButtonPlayerController = (function() {
 
       // remove all highlights from buttons
       var allButtons = document.querySelector('button');
-
+      
       for(var i = 0; i < allButtons.length; i++) {
         allButtons[i].classList.remove('highlighted');
       }
