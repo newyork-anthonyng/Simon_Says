@@ -14,25 +14,25 @@
 
   button0.addEventListener('click', function() {
     ButtonPlayerController.playButton(this);
-    GameController.getPlayerInput(this);
+    GameController.playMove(this);
   });
 
   button1.addEventListener('click', function() {
     // GameController.playerMoves(Number(this.id));
     ButtonPlayerController.playButton(this);
-    GameController.getPlayerInput(this);
+    GameController.playMove(this);
   });
 
   button2.addEventListener('click', function() {
     // GameController.playerMoves(Number(this.id));
     ButtonPlayerController.playButton(this);
-    GameController.getPlayerInput(this);
+    GameController.playMove(this);
   });
 
   button3.addEventListener('click', function() {
     // GameController.playerMoves(Number(this.id));
     ButtonPlayerController.playButton(this);
-    GameController.getPlayerInput(this);
+    GameController.playMove(this);
   });
 
 })();

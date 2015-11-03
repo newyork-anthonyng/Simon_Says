@@ -15,15 +15,34 @@ var GameController = (function() {
 
     increaseLevel: function() {
       level++;
+
+      GameController.playPattern();
     },
 
+    // get the player move and do game logic
     getPlayerInput: function(button) {
       // playButton returns a method reference
       ButtonPlayerController.playButton(button)();
       Board.addPlayerInput(button.id);
+
+    },
+
+
+    playMove: function(button) {
+      // check if game is over
+      
+      // check if player is finished inputting pattern
+
+      // get player move
+
+      // check to see if it matches. If it doesn't, game over. If it does, next level.
+
+      // If next level, then play the new pattern.
+
     },
 
     playPattern: function() {
+      console.log('Playing pattern...');
       console.log('Level: ' + level);
       console.log('Current pattern: ' + Board.getCurrentPattern(level));
       ButtonPlayerController.playPattern(Board.getCurrentPattern(level));
@@ -43,7 +62,7 @@ var GameController = (function() {
 
     getGameOver: function() {
       return gameOver;
-    }
+    },
 
     testGameController: function() {
       Board.testBoardPattern();
