@@ -14,18 +14,23 @@ var Board = (function() {
       return boardPattern.slice(0, level);
     },
 
-    resetPlayerPattern: function() {
+    resetBoard: function() {
+      this.resetPlayerPattern();
       boardPattern = [];
+    },
+
+    resetPlayerPattern: function() {
       playerPattern = [];
     },
 
     addPlayerInput: function(buttonNumber) {
       playerPattern.push(buttonNumber);
-      // console.log(playerPattern);
     },
 
     playerFinished: function(level) {
       if(playerPattern.length >= level) {
+        console.log('Player pattern length: ' + playerPattern.length);
+        console.log('Current level: ' + level);
         return true;
       } else {
         return false;
@@ -35,12 +40,9 @@ var Board = (function() {
     checkPlayerMoves: function() {
       for(var i = 0; i < playerPattern.length; i++) {
         if(playerPattern[i] != boardPattern[i]) {
-          // console.log('player pattern inside checkplayer: ' + playerPattern[i]);
-          // console.log('board pattern inside checkplayer: ' + boardPattern[i]);
           return false;
         }
       }
-
       return true;
     },
 
@@ -52,7 +54,7 @@ var Board = (function() {
   }
 })();
 
-// Board tests
+//// Board tests
 // Board.createPattern();
 // Board.testBoardPattern();
 // Board.addPlayerInput(Board.testBoardPattern()[0]);
@@ -62,3 +64,7 @@ var Board = (function() {
 // console.log('Checking player moves: ' + Board.checkPlayerMoves(3));
 // Board.addPlayerInput(4);
 // console.log('Checking player moves: ' + Board.checkPlayerMoves(4));
+// Board.resetPlayerPattern();
+// Board.testBoardPattern();
+// Board.resetBoard();
+// Board.testBoardPattern();

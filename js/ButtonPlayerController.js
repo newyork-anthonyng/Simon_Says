@@ -26,7 +26,7 @@ var ButtonPlayerController = (function() {
     },
 
     // play the patterns that are passed into it
-    play: function(patternArray) {
+    playPattern: function(patternArray) {
 
       // because of closure issues, make an array of functions
       var functionArray = [];
