@@ -4,11 +4,9 @@ var GameController = (function() {
 
   return {
     createGame: function() {
-      // create board
       Board.resetBoard();
       Board.createPattern();
 
-      // reset variables
       level = 1;
       gameOver = false;
     },
@@ -24,14 +22,20 @@ var GameController = (function() {
       // playButton returns a method reference
       ButtonPlayerController.playButton(button)();
       Board.addPlayerInput(button.id);
-
     },
 
 
     playMove: function(button) {
+      // light up the button
+      ButtonPlayerController.playButton(button)();
+
       // check if game is over
-      
-      // check if player is finished inputting pattern
+      if(!gameOver) {
+        // check if player is finished inputting pattern
+        GameController.getPlayerInput(button);
+
+      }
+
 
       // get player move
 
