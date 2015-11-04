@@ -40,6 +40,8 @@ var Board = (function() {
     checkPlayerMoves: function() {
       for(var i = 0; i < playerPattern.length; i++) {
         if(playerPattern[i] != boardPattern[i]) {
+          console.log("Check move, Player pattern: " + playerPattern[i]);
+          console.log("Check move, Board pattern: " + boardPattern[i]);
           return false;
         }
       }

@@ -1,20 +1,25 @@
 var GameController = (function() {
   var level = 1;
   var gameOver = false;
+  var interval = 1500;
 
   return {
     createGame: function() {
+      console.log("Creating game...");
       Board.resetBoard();
       Board.createPattern();
 
-      level = 1;
+      level = 0;
       gameOver = false;
+
+      GameController.increaseLevel();
     },
 
     increaseLevel: function() {
       level++;
 
       GameController.playPattern();
+      Board.resetPlayerPattern();
     },
 
     // get the player move and do game logic
@@ -26,22 +31,30 @@ var GameController = (function() {
 
 
     playMove: function(button) {
-      // light up the button
-      ButtonPlayerController.playButton(button)();
 
       // check if game is over
       if(!gameOver) {
-        // check if player is finished inputting pattern
-        GameController.getPlayerInput(button);
 
+        // check if player is finished inputting their moves
+        if(!GameController.playerFinishedInputting()) {
+          // get player input
+          GameController.getPlayerInput(button);
+
+          // check to see if it matches. If it doesn't, game over. If it does, next level.
+          if(!GameController.checkPlayerMoves()) {
+            console.log("Game is over...");
+            GameController.setGameOver();
+          }
+
+        }
+
+        // If player is finished inputting, then increase level
+        if(GameController.playerFinishedInputting()) {
+          window.setTimeout(function() {
+            GameController.increaseLevel();
+          }, interval);
+        }
       }
-
-
-      // get player move
-
-      // check to see if it matches. If it doesn't, game over. If it does, next level.
-
-      // If next level, then play the new pattern.
 
     },
 
@@ -77,63 +90,3 @@ var GameController = (function() {
   }
 
 })();
-
-// GameController.createGame();
-// GameController.testGameController();
-// GameController.increaseLevel();
-// GameController.testGameController();
-
-// var GameController = (function() {
-//   var gameOver = false;
-//   var level = 1;
-//
-//   return {
-//     // create new board game
-//     createGame: function() {
-//       GameController.restartGame();
-//       Board.createPattern();
-//     },
-//
-//     // restart game
-//     restartGame: function() {
-//       Board.resetBoardPattern();
-//     },
-//
-//     // player enters move
-//     playerMoves: function(playerInput) {
-//       // add player input
-//       Board.addPlayerInput(playerInput);
-//
-//       // check their moves
-//       GameController.checkForGameOver();
-//
-//       // advance to next level otherwise
-//       if(!gameOver && Board.playerLevel() === level) {
-//         GameController.nextLevel();
-//       }
-//     },
-//
-//     // advance to the next level of the game
-//     nextLevel: function() {
-//       level++;
-//       Board.test();
-//       console.log("Next level: " + level)
-//       Board.resetPlayerPattern();
-//     },
-//
-//     // check for game over
-//     checkForGameOver: function() {
-//       if(!Board.checkForMatch()) {
-//         gameOver = true;
-//         console.log("Game is over");
-//       }
-//     },
-//
-//     // return current board pattern
-//     getBoardPattern: function() {
-//       var myBoard = Board.getBoardPattern();
-//       return myBoard.splice(0, level);
-//     }
-//
-//   }
-// })();

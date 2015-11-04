@@ -6,9 +6,9 @@
   var button3 = document.getElementById('3');
   var playGameButton = document.getElementById('PlayGame');
 
+  GameController.createGame();
 
   playGameButton.addEventListener('click', function() {
-    console.log('Creating game');
     GameController.createGame();
   });
 
