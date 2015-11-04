@@ -20,6 +20,10 @@ var GameController = (function() {
 
       GameController.playPattern();
       Board.resetPlayerPattern();
+
+      // update screen
+      var scoreDisplay = document.getElementById("scoreDisplay");
+      scoreDisplay.innerText = "Score: " + (level - 1);
     },
 
     // get the player move and do game logic
@@ -75,6 +79,10 @@ var GameController = (function() {
 
     setGameOver: function() {
       gameOver = true;
+
+      // update screen
+      var scoreDisplay = document.getElementById("scoreDisplay");
+      scoreDisplay.innerText = "Score: " + (level - 1);
     },
 
     getGameOver: function() {
