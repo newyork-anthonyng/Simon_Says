@@ -1,0 +1,91 @@
+body {
+  background-color:black;
+  /*background: -webkit-radial-gradient(rgba(50, 50, 50, 1), rgba(0, 0, 0, 1));*/
+  background: radial-gradient(800px at center, rgb(50, 50, 50), rgb(0, 0, 0));
+  font-family:Helvetica, sans-serif;
+  text-align:center;
+}
+
+.container {
+  margin: 0 auto;
+
+  height:580px;
+  width:550px;
+}
+
+button {
+  border:1px solid black;
+  border-radius:10px;
+  margin:5px;
+  padding:0px;
+  opacity:0.25;
+
+  height:250px;
+  width:250px;
+}
+
+[id='0'] {
+  background-color:blue;
+}
+
+[id='1'] {
+  background-color:yellow;
+}
+
+[id='2'] {
+  background-color:red;
+}
+
+[id='3'] {
+  background-color:green;
+}
+
+#PlayGame {
+  border-radius:30%;
+  height:50px;
+  width:50px;
+  opacity:1.0;
+}
+
+button:hover, .highlighted {
+  opacity:1.0;
+}
+
+/* ********************** */
+/* Accordion Instructions */
+/* ********************** */
+
+.accordion {
+  background-color:white;
+  border:1px solid black;
+  border-radius:5px;
+  height:100px;
+  overflow:hidden;
+  margin:10px auto;
+  padding:5px;
+  width:500px;
+
+  transition:height 0.3s ease-out;
+  transition-delay:0.1s;
+
+  position:relative;
+}
+
+.accordion:hover {
+  height:250px;
+}
+
+.fadeout {
+  bottom:0px;
+  width: 500px;
+  height:60px;
+
+  position:absolute;
+  background: -webkit-linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+}
+
+#scoreDisplay {
+  color:white;
+  font-size:30px;
+  text_align:center;
+}
