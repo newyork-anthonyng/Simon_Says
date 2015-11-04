@@ -4,7 +4,7 @@ var Board = (function() {
 
   return {
     createPattern: function() {
-      for(var i = 0; i < 10; i++) {
+      for(var i = 0; i < 100; i++) {
         var randomNumber = Math.floor(Math.random() * 4);
         boardPattern.push(randomNumber);
       }
@@ -29,8 +29,8 @@ var Board = (function() {
 
     playerFinished: function(level) {
       if(playerPattern.length >= level) {
-        console.log('Player pattern length: ' + playerPattern.length);
-        console.log('Current level: ' + level);
+        // console.log('Player pattern length: ' + playerPattern.length);
+        // console.log('Current level: ' + level);
         return true;
       } else {
         return false;
@@ -40,19 +40,19 @@ var Board = (function() {
     checkPlayerMoves: function() {
       for(var i = 0; i < playerPattern.length; i++) {
         if(playerPattern[i] != boardPattern[i]) {
-          console.log("Check move, Player pattern: " + playerPattern[i]);
-          console.log("Check move, Board pattern: " + boardPattern[i]);
+          // console.log("Check move, Player pattern: " + playerPattern[i]);
+          // console.log("Check move, Board pattern: " + boardPattern[i]);
           return false;
         }
       }
       return true;
     },
 
-    testBoardPattern: function() {
-      console.log('Board pattern: ' + boardPattern);
-      console.log('Player pattern: ' + playerPattern);
-      return boardPattern;
-    }
+    // testBoardPattern: function() {
+    //   // console.log('Board pattern: ' + boardPattern);
+    //   // console.log('Player pattern: ' + playerPattern);
+    //   return boardPattern;
+    // }
   }
 })();
 

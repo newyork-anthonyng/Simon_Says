@@ -7,8 +7,7 @@ var ButtonPlayerController = (function() {
 
     playButton: function(button) {
       return function() {
-        console.log(button.id + ' was pressed.');
-
+        
         // remove all highlights from buttons
         var allButtons = document.getElementsByClassName('highlighted');
 

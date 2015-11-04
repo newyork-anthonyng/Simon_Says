@@ -1,11 +1,14 @@
 var GameController = (function() {
-  var level = 1;
+  var level = 0;
   var gameOver = false;
-  var interval = 1500;
+  // interval represents the pause between when the player finishes
+  // inputting their full pattern, and when the ButtonPlayer plays the next
+  // pattern
+  var interval = 900;
 
   return {
     createGame: function() {
-      console.log("Creating game...");
+      // console.log("Creating game...");
       Board.resetBoard();
       Board.createPattern();
 
@@ -21,13 +24,12 @@ var GameController = (function() {
       GameController.playPattern();
       Board.resetPlayerPattern();
 
-      // update screen
-      var scoreDisplay = document.getElementById("scoreDisplay");
-      scoreDisplay.innerText = "Score: " + (level - 1);
+      GameController.updateScoreDisplay();
     },
 
     // get the player move and do game logic
     getPlayerInput: function(button) {
+
       // playButton returns a method reference
       ButtonPlayerController.playButton(button)();
       Board.addPlayerInput(button.id);
@@ -36,8 +38,7 @@ var GameController = (function() {
 
     playMove: function(button) {
 
-      // check if game is over
-      if(!gameOver) {
+      if(!GameController.getGameOver()) {
 
         // check if player is finished inputting their moves
         if(!GameController.playerFinishedInputting()) {
@@ -46,26 +47,24 @@ var GameController = (function() {
 
           // check to see if it matches. If it doesn't, game over. If it does, next level.
           if(!GameController.checkPlayerMoves()) {
-            console.log("Game is over...");
+            // console.log("Game is over...");
             GameController.setGameOver();
           }
-
         }
 
         // If player is finished inputting, then increase level
-        if(GameController.playerFinishedInputting()) {
+        if(GameController.playerFinishedInputting() && !GameController.getGameOver()) {
           window.setTimeout(function() {
             GameController.increaseLevel();
           }, interval);
         }
       }
-
     },
 
     playPattern: function() {
-      console.log('Playing pattern...');
-      console.log('Level: ' + level);
-      console.log('Current pattern: ' + Board.getCurrentPattern(level));
+      // console.log('Playing pattern...');
+      // console.log('Level: ' + level);
+      // console.log('Current pattern: ' + Board.getCurrentPattern(level));
       ButtonPlayerController.playPattern(Board.getCurrentPattern(level));
     },
 
@@ -80,21 +79,29 @@ var GameController = (function() {
     setGameOver: function() {
       gameOver = true;
 
-      // update screen
-      var scoreDisplay = document.getElementById("scoreDisplay");
-      scoreDisplay.innerText = "Score: " + (level - 1);
+      GameController.updateScoreDisplay();
     },
 
     getGameOver: function() {
       return gameOver;
     },
 
-    testGameController: function() {
-      Board.testBoardPattern();
-      console.log('level: ' + level);
-      console.log('gameOver: ' + gameOver);
-      console.log('player matches?: ' + this.checkPlayerMoves());
-    }
+    updateScoreDisplay: function() {
+      var scoreDisplay = document.getElementById("scoreDisplay");
+
+      if(GameController.getGameOver()) {
+        scoreDisplay.innerText = "Game Over";
+      } else {
+        scoreDisplay.innerText = "Score: " + (level - 1);
+      }
+    },
+
+    // testGameController: function() {
+    //   Board.testBoardPattern();
+    //   console.log('level: ' + level);
+    //   console.log('gameOver: ' + gameOver);
+    //   console.log('player matches?: ' + this.checkPlayerMoves());
+    // }
   }
 
 })();
